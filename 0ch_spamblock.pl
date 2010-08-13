@@ -89,15 +89,15 @@ sub execute
 	# メッセージを取得
 	my $mes = $form->Get('MESSAGE');
 	
-	if ( $mes =~ /h?ttp:\/\/([0-9a-zA-Z\.\-]+)(\/)?/ ) {
+	if ( $mes =~ /(h?ttp:\/\/)?([0-9a-zA-Z\.\-]+)(\/)?/ ) {
 		
 		# ホストを調査
-		my $bin_addr = gethostbyname($1);
+		my $bin_addr = gethostbyname($2);
 		my $result = sprintf("%vd", $bin_addr);
 		
 		# エラーを返すよ
 		if ( $result eq "66.71.248.210" ) {
-			&PrintBBSError ( $sys, $form, 600 )
+			&PrintBBSError ( $sys, $form, 205 )
 		}
 		
 	}
