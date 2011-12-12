@@ -85,23 +85,30 @@ sub execute
 {
 	my $this = shift;
 	my ($sys, $form) = @_;
+	my ( @ng_addr, $mes, $bin_addr, $result );
+	
+	# 禁止IPアドレス
+	@ng_addr  = ( '66.71.248.210', '174.122.102.1' );
 	
 	# メッセージを取得
-	my $mes = $form->Get('MESSAGE');
+	$mes = $form->Get('MESSAGE');
 	
 	# Encode.pmの使い方わかんないんですぅ＞＜
-	use Encode;
+	require Encode;
 	Encode::from_to( $mes, "Shift_JIS", "UTF-8" );
 	
-	if ( $mes =~ /(h?ttp:\/\/)?([0-9a-zA-Z\.-]+\.(?:com|net|org|biz|info|me))/ ) {
+	while ( $mes =~ /(h?ttp:\/\/)?([0-9a-zA-Z\.\-]+\.(?:com|net|info|me))/ig )
+	{
 		
 		# ホストを調査
-		my $bin_addr = gethostbyname($2);
-		my $result = sprintf("%vd", $bin_addr);
+		$bin_addr = gethostbyname($2);
+		$result = sprintf("%vd", $bin_addr);
 		
 		# エラーを返すよ
-		if ( $result eq "66.71.248.210" ) {
-			&PrintBBSError ( $sys, $form, 205 )
+		foreach ( @ng_addr ) {
+			if ( $_ eq $result ) {
+				PrintBBSError( $sys, $form, 205 );
+			}
 		}
 		
 	}
