@@ -88,7 +88,7 @@ sub execute
 	my ( @ng_addr, $mes, $bin_addr, $result );
 	
 	# 禁止IPアドレス
-	@ng_addr  = ( '66.71.248.210', '174.122.102.1' );
+	@ng_addr  = ( '66.71.248.210', '174.122.102.1', '74.207.244.52' );
 	
 	# メッセージを取得
 	$mes = $form->Get('MESSAGE');
