@@ -88,7 +88,7 @@ sub execute
 	my ( @ng_addr, $mes, $bin_addr, $result );
 	
 	# 禁止IPアドレス
-	@ng_addr  = ( '66.71.248.210', '174.122.102.1', '74.207.244.52' );
+	@ng_addr  = ( '66.71.248.210', '174.122.102.1', '74.207.244.52', '74.207.242.227' );
 	
 	# メッセージを取得
 	$mes = $form->Get('MESSAGE');
@@ -97,7 +97,7 @@ sub execute
 	require Encode;
 	Encode::from_to( $mes, "Shift_JIS", "UTF-8" );
 	
-	while ( $mes =~ /(h?ttp:\/\/)?([0-9a-zA-Z\.\-]+\.(?:com|net|info|me|mobi|cc))/ig )
+	while ( $mes =~ /(h?ttp:\/\/)?([0-9a-zA-Z\.\-]+\.(?:com|net|info|me|mobi|cc|asia|org|biz))/ig )
 	{
 		
 		# ホストを調査
