@@ -97,7 +97,7 @@ sub execute
 	require Encode;
 	Encode::from_to( $mes, "Shift_JIS", "UTF-8" );
 	
-	while ( $mes =~ /(h?ttp:\/\/)?([0-9a-zA-Z\.\-]+\.(?:com|net|info|me|mobi|cc|asia|org|biz))/ig )
+	while ( $mes =~ /(h?ttp:\/\/)?([0-9a-zA-Z\.\-]+\.(?:com|net|info|me|mobi|cc|asia|org|biz|co|in|tv|ch|at|mn|la|vg|ms|gs|vc|bz|ws|be|so))/ig )
 	{
 		
 		# ÉzÉXÉgÇí≤ç∏
